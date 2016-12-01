@@ -1,0 +1,7 @@
+*.bak
+*.iml
+.idea/
+bin/
+out/
+resources/
+smb.jar
