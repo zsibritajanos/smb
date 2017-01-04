@@ -40,7 +40,7 @@ public class MixCloud {
      * delay
      */
 
-    private static final int WAIT_FAV_MIN = 4;
+    private static final int WAIT_FAV_MIN = 15;
 
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -217,51 +217,60 @@ public class MixCloud {
     }
 
     private static void likeNews() {
+
+        // init result
+        JSONObject result = null;
+
         try {
-            // init result
-            JSONObject result = new JSONObject(HttpUtil.request(NEW_QUERY));
+            result = new JSONObject(HttpUtil.request(NEW_QUERY));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+        if (result != null) {
             while (result.has("paging")) {
-                result = new JSONObject(HttpUtil.request(result.getJSONObject("paging").getString("next")));
-                JSONArray data = result.getJSONArray("data");
-                for (int i = 0; i < data.length(); i++) {
-                    JSONObject cast = data.getJSONObject(i);
+                try {
+                    JSONArray data = result.getJSONArray("data");
+                    for (int i = 0; i < data.length(); i++) {
+                        JSONObject cast = data.getJSONObject(i);
 
-                    Set<String> tags = getTags(cast);
+                        Set<String> tags = getTags(cast);
 
-                    if (isMyGenre(tags)) {
-                        // mix key
-                        String key = cast.getString("key");
-                        // user key
-                        String userKey = data.getJSONObject(i).getJSONObject("user").getString("key");
+                        if (isMyGenre(tags)) {
+                            // mix key
+                            String key = cast.getString("key");
+                            // user key
+                            String userKey = data.getJSONObject(i).getJSONObject("user").getString("key");
 
-                        int follower = getUserFollowers(userKey);
-                        int following = getUserFollowing(userKey);
+                            int follower = getUserFollowers(userKey);
+                            int following = getUserFollowing(userKey);
 
-                        if (10 < follower & follower < 1000) {
-                            if (10 < following & following < 1000) {
+                            if (10 < follower & follower < 2000) {
+                                if (10 < following & following < 2000) {
 
-                                //String country = getUserCountry(userKey);
-                                //if (country != null && country.equals("Hungary")) {
-                                System.out.println(key);
-                                System.out.println(userKey);
-                                System.out.println(follower);
-                                System.out.println(following);
-                                //   System.out.println(country);
-
-                                addFavorite(key);
-                                follow(userKey);
-                                //}
+                                    //String country = getUserCountry(userKey);
+                                    //if (country != null && country.equals("Hungary")) {
+                                        System.out.println(key);
+                                        System.out.println(userKey);
+                                        System.out.println(follower);
+                                        System.out.println(following);
+                                     //   System.out.println(country);
+                                        addFavorite(key);
+                                        follow(userKey);
+                                    //}
+                                }
                             }
                         }
                     }
+
+                    result = new JSONObject(HttpUtil.request(result.getJSONObject("paging").getString("next")));
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
     }
+
 
     private static void addFavorite(String key) {
         String prefix = "https://api.mixcloud.com";

@@ -5,3 +5,6 @@ bin/
 out/
 resources/
 smb.jar
+data/docler/
+*.txt
+*.png
