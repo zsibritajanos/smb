@@ -43,7 +43,7 @@ public class HttpUtil {
 
             URL url = new URL(postUrl);
 
-            System.out.println(url);
+            // System.out.println(url);
 
             HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
             httpUrlConnection.setDoInput(true);

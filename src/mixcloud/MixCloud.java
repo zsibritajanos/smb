@@ -245,19 +245,19 @@ public class MixCloud {
                             int follower = getUserFollowers(userKey);
                             int following = getUserFollowing(userKey);
 
-                            if (10 < follower & follower < 2000) {
-                                if (10 < following & following < 2000) {
+                            if (0 < follower & follower < 5000) {
+                                if (0< following & following < 5000) {
 
-                                    //String country = getUserCountry(userKey);
+                                    String country = getUserCountry(userKey);
                                     //if (country != null && country.equals("Hungary")) {
                                         System.out.println(key);
                                         System.out.println(userKey);
                                         System.out.println(follower);
                                         System.out.println(following);
-                                     //   System.out.println(country);
-                                        addFavorite(key);
+                                        System.out.println(country);
+                                        //addFavorite(key);
                                         follow(userKey);
-                                    //}
+                                    //  }
                                 }
                             }
                         }
