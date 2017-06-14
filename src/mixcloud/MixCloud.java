@@ -27,20 +27,12 @@ public class MixCloud {
     private static final String USER_QUERY = "https://api.mixcloud.com/";
     private static final String CLOUDCAST_QUERY = "https://api.mixcloud.com/search/?type=cloudcast&q=";
     private static final String NEW_QUERY = "https://api.mixcloud.com/new/?limit=100";
-    private static final String[] MY_GENRES = new String[]{"tech house"};
-
 
     /**
      * query keys
      */
     private static final String JSON_KEY_NAME = "name";
     private static final String JSON_KEY_CITY = "city";
-
-    /**
-     * delay
-     */
-
-    private static final int WAIT_FAV_MIN = 15;
 
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -234,30 +226,32 @@ public class MixCloud {
                     for (int i = 0; i < data.length(); i++) {
                         JSONObject cast = data.getJSONObject(i);
 
-                        Set<String> tags = getTags(cast);
+                        // user key
+                        String userKey = data.getJSONObject(i).getJSONObject("user").getString("key");
+                        // mix key
+                        String key = cast.getString("key");
+                        String country = getUserCountry(userKey);
 
-                        if (isMyGenre(tags)) {
-                            // mix key
-                            String key = cast.getString("key");
-                            // user key
-                            String userKey = data.getJSONObject(i).getJSONObject("user").getString("key");
-
-                            int follower = getUserFollowers(userKey);
-                            int following = getUserFollowing(userKey);
-
-                            if (0 < follower & follower < 5000) {
-                                if (0< following & following < 5000) {
-
-                                    String country = getUserCountry(userKey);
-                                    //if (country != null && country.equals("Hungary")) {
+                        /**
+                         * if Hungarian
+                         */
+                        if (country != null && country.equals("Hungary")) {
+                            System.out.println(country);
+                            System.out.println(key);
+                            addFavorite(key);
+                            System.out.println(userKey);
+                            follow(userKey);
+                        } else {
+                            Set<String> tags = getTags(cast);
+                            if (isMyGenre(tags)) {
+                                follow(userKey);
+                                System.out.println(userKey);
+                                int follower = getUserFollowers(userKey);
+                                if (Auth.getFav()) {
+                                    if (follower > 200) {
+                                        addFavorite(key);
                                         System.out.println(key);
-                                        System.out.println(userKey);
-                                        System.out.println(follower);
-                                        System.out.println(following);
-                                        System.out.println(country);
-                                        //addFavorite(key);
-                                        follow(userKey);
-                                    //  }
+                                    }
                                 }
                             }
                         }
@@ -281,7 +275,7 @@ public class MixCloud {
         System.out.println(response);
 
         try {
-            TimeUnit.MINUTES.sleep(WAIT_FAV_MIN);
+            TimeUnit.MINUTES.sleep(Auth.getWaitMin());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -296,7 +290,7 @@ public class MixCloud {
         System.out.println(response);
 
         try {
-            TimeUnit.MINUTES.sleep(WAIT_FAV_MIN);
+            TimeUnit.MINUTES.sleep(Auth.getWaitMin());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

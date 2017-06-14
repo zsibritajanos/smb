@@ -10,9 +10,10 @@ public class Auth {
 
     private static final String ACCESS_TOKEN_KEY = "ACCESS_TOKEN";
     private static final String TAGS_KEY = "TAGS";
+    private static final String FAV_KEY = "FAV";
+    private static final String WAIT_MIN_KEY = "WAIT_MIN";
 
     private static Set<String> tags = null;
-
     public static Properties properties = null;
 
     /**
@@ -53,5 +54,19 @@ public class Auth {
             tags = new HashSet<>(Arrays.asList(properties.getProperty(TAGS_KEY).split(",")));
         }
         return tags;
+    }
+
+    /**
+     * @return
+     */
+    public static boolean getFav() {
+        return Boolean.parseBoolean(properties.getProperty(FAV_KEY));
+    }
+
+    /**
+     * @return
+     */
+    public static int getWaitMin() {
+        return Integer.parseInt(properties.getProperty(WAIT_MIN_KEY));
     }
 }
