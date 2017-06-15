@@ -33,21 +33,13 @@ public class HttpUtil {
         return response.toString();
     }
 
-    public static String postRequest(String postUrl) {
-
+    public static String methodRequest(String postUrl, String method) {
         try {
-
-            //  url = new URL("http://localhost:9200/users/user/_search?q=lemma:" + "MSZP" + "&pretty=true");
-
-            //String params = URLEncoder.encode("");
-
             URL url = new URL(postUrl);
-
-            // System.out.println(url);
 
             HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
             httpUrlConnection.setDoInput(true);
-            httpUrlConnection.setRequestMethod("POST");
+            httpUrlConnection.setRequestMethod(method);
             httpUrlConnection.connect();
 
             InputStream is = new BufferedInputStream(httpUrlConnection.getInputStream());
@@ -70,6 +62,13 @@ public class HttpUtil {
             e.printStackTrace(pw);
             return sw.toString();
         }
+    }
 
+    public static String postRequest(String postUrl) {
+        return methodRequest(postUrl, "POST");
+    }
+
+    public static String delRequest(String postUrl) {
+        return methodRequest(postUrl, "DELETE");
     }
 }

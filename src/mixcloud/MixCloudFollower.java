@@ -42,6 +42,7 @@ public class MixCloudFollower {
         }
     }
 
+
     /**
      * @param user
      */
@@ -66,6 +67,7 @@ public class MixCloudFollower {
 
                         boolean response = follow(userKey);
                         System.out.print(name + "/" + userName + "\t");
+
 
                         if (response) {
                             System.out.println(ANSI_GREEN + "OK" + ANSI_RESET);
