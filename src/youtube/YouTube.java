@@ -171,6 +171,7 @@ public class YouTube {
         }
     }
 
+
     public static void main(String[] args) {
 
         if (args.length == 1) {
@@ -178,7 +179,7 @@ public class YouTube {
         }
         System.out.println(wait_sec);
 
-        observeChannel("UCa10nxShhzNrCE1o2ZOPztg");
+        observeChannel("UCn8oyNgs8NjSIDZyfhFL-0g");
 
         try {
             logFile.close();

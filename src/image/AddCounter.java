@@ -12,7 +12,7 @@ import java.io.IOException;
 public class AddCounter {
 
 
-    private static void addCounter(String image, int number, String out){
+    private static void addCounter(String image, int number, String out) {
         BufferedImage img = null;
         try {
             img = ImageIO.read(new File(image));
@@ -27,9 +27,9 @@ public class AddCounter {
                 RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
-        g2d.setColor(new Color(255, 216, 180, 255));
-        g2d.setFont(g.getFont().deriveFont(30f));
-        g2d.drawString("000" + String.valueOf(number), 450, 500);
+        g2d.setColor(new Color(255, 255, 255, 255));
+        g2d.setFont(g.getFont().deriveFont(25f));
+        g2d.drawString("00" + String.valueOf(number), 220, 670);
         g.dispose();
 
         try {
@@ -38,9 +38,12 @@ public class AddCounter {
             e.printStackTrace();
         }
     }
+
     public static void main(String[] args) {
-        for (int i = 4550; i < 4850; ++i){
-            addCounter("./data/image/belepo.png", i, "./data/image/out/" + i + ".png");
+//        int i = 7555;
+//        addCounter("./data/ev_birs.jpg", i, "./data/birs/" + i + ".png");
+        for (int i = 7555; i < 7666; ++i) {
+            addCounter("./data/ev_birs.jpg", i, "./data/birs/" + i + ".png");
         }
     }
 }
