@@ -189,7 +189,7 @@ public class AccountCleaner {
     public static void main(String[] args) {
 
         if (args.length < 1) {
-            args = new String[]{"./resources/techno.properties"};
+            args = new String[]{"./resources/corvin.properties"};
         }
 
         Auth.init(args[0]);
