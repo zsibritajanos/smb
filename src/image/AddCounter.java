@@ -71,7 +71,7 @@ public class AddCounter {
 
         g2d.setColor(new Color(255, 255, 255, 255));
         g2d.setFont(g.getFont().deriveFont(26f));
-        g2d.drawString("0" + String.valueOf(number), 309, 200);
+        g2d.drawString("0" + String.valueOf(number), 309, 240);
         g.dispose();
 
         return image;
@@ -85,6 +85,6 @@ public class AddCounter {
 //        }
 
 
-        huge("./data/smd_ev.jpg", 13, 5678);
+        huge("./data/ketto/bsw_2.jpg", 13, 7777);
     }
 }

@@ -179,7 +179,10 @@ public class YouTube {
         }
         System.out.println(wait_sec);
 
-        observeChannel("UCn8oyNgs8NjSIDZyfhFL-0g");
+        //https://www.youtube.com/channel/UCXvSeBDvzmPO05k-0RyB34w
+
+
+        observeChannel("UCfjaVIei78Nm_kMj6lpVkwQ");
 
         try {
             logFile.close();
