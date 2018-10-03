@@ -72,6 +72,7 @@ public class AddCounter {
         g2d.setColor(new Color(255, 255, 255, 255));
         g2d.setFont(g.getFont().deriveFont(26f));
         g2d.drawString("0" + String.valueOf(number), 300, 255);
+
         g.dispose();
 
         return image;

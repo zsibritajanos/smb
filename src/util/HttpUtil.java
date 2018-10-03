@@ -1,9 +1,14 @@
 package util;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by zsjanos on 2016.11.24..
@@ -70,5 +75,13 @@ public class HttpUtil {
 
     public static String delRequest(String postUrl) {
         return methodRequest(postUrl, "DELETE");
+    }
+
+
+
+    public static void main(String[] args){
+        String url = "https://api.mixcloud.com/jakob-snogdal/follow/?access_token=yxFGcRwJeNJpjnmcZFWM4hxNeHYSVfaq";
+        String method = "DELETE";
+        System.out.println(methodRequest(url, method));
     }
 }

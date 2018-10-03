@@ -20,7 +20,8 @@ public class AccountCleaner {
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_WHITE = "\u001B[37m";
 
-    private static final String FOLLOWING_QUERY = "https://api.mixcloud.com/LEVELtechno/following/";
+    private static final String FOLLOWING_QUERY = "https://api.mixcloud.com/corvin/following/";
+    //private static final String FOLLOWING_QUERY = "https://api.mixcloud.com/LEVELtechno/following/";
 
     private static void logFollowing(String logFile) {
 
@@ -155,7 +156,7 @@ public class AccountCleaner {
                             int followerCount = getFollowerCount(userKey);
                             int followingCount = getFollowingCount(userKey);
 
-                            if (followerCount > 2000 && 1000 > followingCount) {
+                            if (followerCount > 5000 && 1000 > followingCount) {
                                 System.out.println(ANSI_WHITE + followerCount + "\t" + followingCount + ANSI_RESET);
                             } else {
                                 boolean response = deleteFollowing(userKey);
@@ -189,7 +190,8 @@ public class AccountCleaner {
     public static void main(String[] args) {
 
         if (args.length < 1) {
-            args = new String[]{"./resources/corvin.properties"};
+            //args = new String[]{"./resources/corvin.properties"};
+            args = new String[]{"./resources/techno.properties"};
         }
 
         Auth.init(args[0]);
@@ -203,3 +205,4 @@ public class AccountCleaner {
     }
 }
 
+//

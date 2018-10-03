@@ -182,8 +182,15 @@ public class YouTube {
         }
         System.out.println(wait_sec);
 
+<<<<<<< HEAD
         //https://www.youtube.com/channel/UCOsYFfaNxTqxKFux98XU-EA
         observeChannel("UCWxjcBec-T-ndmw4xXGZkFw");
+=======
+        //https://www.youtube.com/channel/UCXvSeBDvzmPO05k-0RyB34w
+
+
+        observeChannel("UCfjaVIei78Nm_kMj6lpVkwQ");
+>>>>>>> 8cfbefa96f5213ae297fa6a42accdb1ed8db1808
 
         try {
             logFile.close();
