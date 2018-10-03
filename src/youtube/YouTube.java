@@ -121,6 +121,9 @@ public class YouTube {
         String published = null;
         try {
             title = ((JSONObject) ((JSONObject) video.getJSONArray("items").get(0)).get("snippet")).getString("title");
+
+            System.out.println(title);
+
             viewCount = ((JSONObject) ((JSONObject) video.getJSONArray("items").get(0)).get("statistics")).getString("viewCount");
             published = ((JSONObject) ((JSONObject) video.getJSONArray("items").get(0)).get("snippet")).getString("publishedAt");
         } catch (JSONException e) {
@@ -179,7 +182,8 @@ public class YouTube {
         }
         System.out.println(wait_sec);
 
-        observeChannel("UCn8oyNgs8NjSIDZyfhFL-0g");
+        //https://www.youtube.com/channel/UCOsYFfaNxTqxKFux98XU-EA
+        observeChannel("UCWxjcBec-T-ndmw4xXGZkFw");
 
         try {
             logFile.close();
